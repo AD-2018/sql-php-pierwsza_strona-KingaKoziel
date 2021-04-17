@@ -5,13 +5,14 @@
         
 </head>
     <body>
+    <div class="container">
+    <div class="nav">
      
-         <a href="https://github.com/KingaKoziel/.php">github</a>
-  
-        <div class="nav">
-      <a href="../../index.php">Strona główna</a>
-      <a href="../index.html">Cofnij</a>
-      <div class="container">
+         <a class="link" href="https://github.com/KingaKoziel/.php">github</a>
+      <a class= "link" href="../../index.php">Strona główna</a>
+      <a class="link" href="../index.html">Cofnij</a>
+</div>
+
         <div class="p1">1</div>
         <div class="p2">
         <?php
@@ -33,7 +34,7 @@
             echo("<th>ID</th><th>Imie</th>");
                 while($row = mysqli_fetch_assoc($result)) {
                     echo("<tr>");
-                    echo("<td>".$row['id']."</td><td>".$row['Imie']."</td>");
+                    echo("<td>".$row['id_imie']."</td><td>".$row['Imie']."</td>");
                     echo("</tr>");
                 };
             echo("</table>");
@@ -42,7 +43,7 @@
         ?>
           </div>
         <div class="p3">3</div>
-        <div class="p4">
+          <div class="p4">
             
             <?php
         require_once("../../connect.php");
@@ -63,7 +64,7 @@
             echo("<th>ID</th><th>Rola</th>");
                 while($row = mysqli_fetch_assoc($result)) {
                     echo("<tr>");
-                    echo("<td>".$row['id']."</td><td>".$row['Rola']."</td>");
+                    echo("<td>".$row['id_rola']."</td><td>".$row['Rola']."</td>");
                     echo("</tr>");
                 };
             echo("</table>");
@@ -72,7 +73,23 @@
         ?>
         </div>
 
-        <div class="p5">5</div> 
+        <div class="p5">
+        <?php
+        require_once("../../connect.php");
+        $sql = "select * from Imie, Rola where id_imie=id_rola"; 
+
+$result = mysqli_query($conn, $sql);  
+echo('<table border="1" class="tabela"'); 
+echo('<tr><th>Pracownik</th><th>Zawód</th><th>ID</tr></tr>');
+while($row=mysqli_fetch_assoc($result)){ 
+  echo("<tr>");     
+  echo("<tr>");     
+  echo('<td>'.$row['Imie'].'</td><td>'.$row['Rola'].'</td><td>'.$row['id_imie'].'</td>');     
+  echo("<tr>"); 
+  echo("</tr>"); } 
+echo('</table>'); 
+              ?>
+       </div>  
     </div>
     </body>
 </html>
